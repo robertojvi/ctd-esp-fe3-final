@@ -5,18 +5,27 @@ import Contact from "./Routes/Contact";
 import Favs from "./Routes/Favs";
 import Detail from "./Routes/Detail";
 import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
 
 const App = () => {
   return (
     <div className="App">
+      {/* Navbar siempre visible */}
       <Navbar />
-      <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/contacto" element={<Contact />} />
-        <Route path="/favs" element={<Favs />} />
-        <Route path="/dentist/:id" element={<Detail />} />
-        <Route path="*" element={<Home />} /> {/* Redirección a Home */}
-      </Routes>
+      
+      {/* Contenido principal cambia según la ruta */}
+      <div className="content">
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/contacto" element={<Contact />} />
+          <Route path="/favs" element={<Favs />} />
+          <Route path="/dentist/:id" element={<Detail />} />
+          <Route path="*" element={<Home />} /> {/* Ruta predeterminada */}
+        </Routes>
+      </div>
+      
+      {/* Footer siempre visible */}
+      <Footer />
     </div>
   );
 };

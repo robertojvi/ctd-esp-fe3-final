@@ -52,13 +52,26 @@ footer {
   margin-top: 2rem;
 }
 
-footer > img{
-  width: 200px;
+/* footer > img{
+  width: 100%;
   margin: 0;
-}
+} */
 footer > p{
   margin: 0;
   padding-top: 0.7rem;
+}
+
+.footer {
+  text-align: center;
+  padding: 10px;
+  background-color: rgb(169, 169, 196);
+  border-top: 1px solid #ccc;
+}
+
+.footerimg {
+  width: 2%;
+  margin: 0 5px;
+  padding: 5px;
 }
 
 form{
@@ -95,7 +108,7 @@ form{
 }
 
 table {
- border-collapse: collapse;
+    border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
     display: table;
