@@ -19,6 +19,10 @@ code {
   cursor: pointer;
 }
 
+.favIcon{
+  width: 20%;
+}
+
 h1{
   text-align: center;
 }
@@ -83,6 +87,12 @@ form{
   margin: 0 auto;
 }
 
+card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .card{
   display: flex;
   justify-content: space-around;
@@ -105,6 +115,11 @@ form{
   height: auto;
   flex-wrap: wrap;
   margin: 0 auto;
+}
+
+.card-img {
+  width: 70%;
+  border-radius: 50%;
 }
 
 table {
