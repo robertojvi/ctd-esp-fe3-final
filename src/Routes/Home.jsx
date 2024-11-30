@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <main className={state.theme}>
-      <h1>Home</h1>
+      <h1>Dentist List</h1>
       <div className="card-grid">
         {state.data.map((dentist) => (
           <Card key={dentist.id} {...dentist} />

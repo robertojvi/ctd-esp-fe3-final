@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { ContextGlobal } from "../Components/utils/global.context";
 
 const Detail = () => {
   const { id } = useParams();
   const [dentist, setDentist] = useState(null);
+  const { state } = useContext(ContextGlobal);
 
   useEffect(() => {
     const fetchDentist = async () => {
@@ -19,7 +21,7 @@ const Detail = () => {
   }, [id]);
 
   return (
-    <div>
+    <div className={state.theme}>
       {dentist ? (
         <>
           <h1>Dentist Details</h1>
