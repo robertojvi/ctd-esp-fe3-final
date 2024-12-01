@@ -13,7 +13,7 @@ code {
     monospace;
 }
 .favButton{
-  background-color: rgba(136, 136, 136, 0.116);
+  background-color: rgba(41, 81, 131, 0.338);
   padding: 5px;
   border: none;
   border-radius: 10px;
@@ -39,6 +39,7 @@ nav{
 a{
   color: #000;
   text-decoration: none;
+  font-weight: bold;
   margin: 5px;
   cursor: pointer;
 }
@@ -112,7 +113,7 @@ card {
 .card-grid{
   display: flex;
   justify-content: space-evenly;
-  gap: 0.5rem;
+  gap: 0.2rem;
   width: 60%;
   height: auto;
   flex-wrap: wrap;
@@ -120,7 +121,7 @@ card {
 }
 
 .card-img {
-  width: 60%;
+  width: 40%;
   border-radius: 50%;
 }
 .contact{
@@ -150,9 +151,17 @@ tr:nth-child(even) {
 }
 
 .dark{
-  background-color: #12121296;
+  background-color: #1e016150;
   color: white;
 }
 .dark > a {
   color: white;
+}
+
+.dark, p, h4{
+  color: white;
+}
+
+.light, p, h4{
+  color: black;
 }

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
 const Card = ({ name, username, id }) => {
+	const { state } = useContext(ContextGlobal);
 	const { dispatch } = useContext(ContextGlobal);
 
 	// Función para agregar a favoritos
@@ -34,31 +35,43 @@ const Card = ({ name, username, id }) => {
 	};
 
 	// Verificar si el dentista está en favoritos
-	const isAlreadyFav = JSON.parse(localStorage.getItem("favs") || "[]").some((fav) => fav.id === id);
+	const isAlreadyFav = JSON.parse(localStorage.getItem("favs") || "[]").some(
+		(fav) => fav.id === id
+	);
 
 	return (
-		<div className="card">
-			<Link to={`/dentist/${id}`}>
-				<h3>{name}</h3>
-				<img
-					className="card-img"
-					src="public/images/doctor.jpg"
-					alt="Dr. Image"
-				/>
-				<p>{username}</p>
-				<p>ID: {id}</p>
-			</Link>
+		<div className={state.theme}>
+			<div className="card">
+				<Link to={`/dentist/${id}`}>
+					<h4>{name}</h4>
+					<img
+						className="card-img"
+						src="/images/doctor.jpg"
+						alt="Dr. Image"
+					/>
+					<p>{username}</p>
+					<p> ID: {id}</p>
+				</Link>
 
-			{/* Botones para agregar o eliminar de favoritos */}
-			{!isAlreadyFav ? (
-				<button onClick={addFav} className="favButton">
-					<img className="favIcon" src="public/favicon.ico" alt="Add to Favorites" />
-				</button>
-			) : (
-				<button onClick={removeFav} className="removeButton">
-					<img className="favIcon" src="public/remove-icon.webp" alt="Remove from Favorites" />
-				</button>
-			)}
+				{/* Botones para agregar o eliminar de favoritos */}
+				{!isAlreadyFav ? (
+					<button onClick={addFav} className="favButton">
+						<img
+							className="favIcon"
+							src="/favicon.ico"
+							alt="Add to Favorites"
+						/>
+					</button>
+				) : (
+					<button onClick={removeFav} className="favButton">
+						<img
+							className="favIcon"
+							src="/removeFavorites-icon.jpg"
+							alt="Remove from Favorites"
+						/>
+					</button>
+				)}
+			</div>
 		</div>
 	);
 };
