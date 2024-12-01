@@ -104,6 +104,7 @@ card {
   width: 200px;
   padding: 3px;
   border: 0.5px solid rgb(136, 136, 136);
+  border-radius: 10px;
 }
 
 .card:hover{
@@ -153,6 +154,7 @@ tr:nth-child(even) {
 .dark{
   background-color: #1e016150;
   color: white;
+  border-radius: 10px;
 }
 .dark > a {
   color: white;
@@ -164,4 +166,11 @@ tr:nth-child(even) {
 
 .light, p, h4{
   color: black;
+}
+
+.themeButton{
+  padding: 5px;
+  border: solid 1px black;
+  border-radius: 10px;
+  cursor: pointer;
 }

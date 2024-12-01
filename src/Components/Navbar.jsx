@@ -14,7 +14,7 @@ const Navbar = () => {
       <Link to="/home">Home</Link>
       <Link to="/favs">Favs</Link>
       <Link to="/contacto">Contact</Link>
-      <button onClick={toggleTheme}>Change theme</button>
+      <button onClick={toggleTheme} className="themeButton">Change theme</button>
     </nav>
   );
 };
