@@ -58,7 +58,7 @@ const Card = ({ name, username, id }) => {
 					<button onClick={addFav} className="favButton">
 						<img
 							className="favIcon"
-							src="/favicon.ico"
+							src="/public/addFAvorite.webp"
 							alt="Add to Favorites"
 						/>
 					</button>
