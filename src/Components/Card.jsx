@@ -1,43 +1,36 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { ContextGlobal } from "./utils/global.context";
 
-const Card = ({ name, username, id }) => {
-	const { state } = useContext(ContextGlobal);
-	const { dispatch } = useContext(ContextGlobal);
+const Card = ({ name, username, id, onRemove }) => {
+	const { state, dispatch } = useContext(ContextGlobal);
+	const [isFav, setIsFav] = useState(
+		JSON.parse(localStorage.getItem("favs") || "[]").some((fav) => fav.id === id)
+	);
 
-	// Función para agregar a favoritos
-	const addFav = () => {
+	// Función para manejar la acción de favoritos
+	const toggleFav = () => {
 		const favs = JSON.parse(localStorage.getItem("favs")) || [];
-		const isAlreadyFav = favs.some((fav) => fav.id === id);
 
-		if (isAlreadyFav) {
-			alert("Este dentista ya está en favoritos.");
-			return;
+		if (isFav) {
+			// Remover de favoritos
+			const updatedFavs = favs.filter((fav) => fav.id !== id);
+			localStorage.setItem("favs", JSON.stringify(updatedFavs));
+			dispatch({ type: "REMOVE_FAV", payload: id });
+
+			// Eliminar tarjeta si está en la vista de favoritos
+			if (onRemove) {
+				onRemove(id);
+			}
+		} else {
+			// Agregar a favoritos
+			const newFav = { name, username, id };
+			localStorage.setItem("favs", JSON.stringify([...favs, newFav]));
+			dispatch({ type: "ADD_FAV", payload: newFav });
 		}
 
-		const newFav = { name, username, id };
-		localStorage.setItem("favs", JSON.stringify([...favs, newFav]));
-		dispatch({ type: "ADD_FAV", payload: newFav });
-
-		alert("Dentista agregado a favoritos.");
+		setIsFav(!isFav);
 	};
-
-	// Función para eliminar de favoritos
-	const removeFav = () => {
-		const favs = JSON.parse(localStorage.getItem("favs")) || [];
-		const updatedFavs = favs.filter((fav) => fav.id !== id);
-
-		localStorage.setItem("favs", JSON.stringify(updatedFavs));
-		dispatch({ type: "REMOVE_FAV", payload: id });
-
-		alert("Dentista eliminado de favoritos.");
-	};
-
-	// Verificar si el dentista está en favoritos
-	const isAlreadyFav = JSON.parse(localStorage.getItem("favs") || "[]").some(
-		(fav) => fav.id === id
-	);
 
 	return (
 		<div className={state.theme}>
@@ -53,24 +46,14 @@ const Card = ({ name, username, id }) => {
 					<p> ID: {id}</p>
 				</Link>
 
-				{/* Botones para agregar o eliminar de favoritos */}
-				{!isAlreadyFav ? (
-					<button onClick={addFav} className="favButton">
-						<img
-							className="favIcon"
-							src="/addFavorite.webp"
-							alt="Add to Favorites"
-						/>
-					</button>
-				) : (
-					<button onClick={removeFav} className="favButton">
-						<img
-							className="favIcon"
-							src="/removeFavorites-icon.jpg"
-							alt="Remove from Favorites"
-						/>
-					</button>
-				)}
+				{/* Botón para alternar entre agregar y eliminar favoritos */}
+				<button onClick={toggleFav} className="favButton">
+					<img
+						className="favIcon"
+						src={isFav ? "/removeFavorites-icon.jpg" : "/addFavorite.webp"}
+						alt={isFav ? "Remove from Favorites" : "Add to Favorites"}
+					/>
+				</button>
 			</div>
 		</div>
 	);
