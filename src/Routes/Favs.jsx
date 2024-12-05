@@ -6,7 +6,6 @@ const Favs = () => {
   const { state } = useContext(ContextGlobal);
   const [favorites, setFavorites] = useState([]);
 
-  // Cargar favoritos desde localStorage al montar el componente
   useEffect(() => {
     const favs = JSON.parse(localStorage.getItem("favs")) || [];
     setFavorites(favs);
@@ -15,8 +14,8 @@ const Favs = () => {
   // Manejar la eliminación de una tarjeta
   const handleRemove = (id) => {
     const updatedFavs = favorites.filter((fav) => fav.id !== id);
-    setFavorites(updatedFavs); // Actualizar la lista local
-    localStorage.setItem("favs", JSON.stringify(updatedFavs)); // Actualizar en localStorage
+    setFavorites(updatedFavs);
+    localStorage.setItem("favs", JSON.stringify(updatedFavs)); 
   };
 
   return (
